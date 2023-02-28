@@ -10,7 +10,7 @@ The CSV file should have the following headers:
 ## Installation
 First, create a virtual env for python version 3.8+.
 Next, download or extract the source code into a working directory.
-Then, activate the virtual environment and run:
+Then, activate the virtual environment and run the following command in the working directory:
 - "pip install --editable . " 
 
 This will install the script to your virtual environment.
