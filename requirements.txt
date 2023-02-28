@@ -1,6 +1,6 @@
-setuptools~=58.0.4
-boto3~=1.24.89
-botocore~=1.27.89
-click~=8.1.3
-pandas~=1.5.2
-tqdm~=4.64.1
+setuptools
+boto3
+botocore
+click
+pandas
+tqdm
