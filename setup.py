@@ -2,9 +2,9 @@ from setuptools import setup
 
 setup(
     name='generate-ssm-parameters',
-    version='1.0',
+    version='0.0.1',
     description='A script for creating AWS SSM Parameters in bulk from a CSV file.',
-    url='',
+    url='https://github.com/travers-co/generate-ssm-parameters',
     author='Travers Annan',
     license='',
     py_modules=['generate_ssm_parameters'],
