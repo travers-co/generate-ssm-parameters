@@ -1,0 +1,5 @@
+Name,Type,Value,Description
+test,SecureString,"{""key"": ""value""}",test parameter
+test2,SecureString,"{""key"": ""value""}",test parameter2
+test3,SecureString,"{""key"": ""value""}",test parameter3
+test4,SecureString,"{""key"": ""value""}",test parameter4
