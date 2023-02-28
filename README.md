@@ -12,11 +12,12 @@ First, create a virtual env for python version 3.8+.
 Next, download or extract the source code into a working directory.
 Then, activate the virtual environment and run:
 - "pip install --editable . " 
+
 This will install the script to your virtual environment.
 
 ## Usage
 To run the script:
-- generate-ssm-parameters <CSV-FILE-NAME> --profile <AWS-PROFILE> --region <AWS-REGION>
+- generate-ssm-parameters CSV-FILE-NAME --profile AWS-PROFILE --region AWS-REGION
 
 The script supports the following option:
 - profile: specifies the aws profile to use while running the script. Defaults to "default".
