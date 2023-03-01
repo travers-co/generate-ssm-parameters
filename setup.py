@@ -29,6 +29,7 @@ setup(
         "tqdm > 4.0.0",
     ],
     python_requires='>=3.7',
+    # - dashes in the second half of this cause module not found errors, not supported
     entry_points={
         "console_scripts": [
             "generate-ssm-parameters=generate_ssm_parameters.gen_ssm_params:cli"
