@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import boto3
 import botocore
 import click
@@ -47,7 +45,7 @@ def cli(region, profile, csv):
 
     # check for csv file
     print(f"Loading {csv}...")
-    files = [f for f in os.listdir('../..') if os.path.isfile(f)]
+    files = [f for f in os.listdir('..') if os.path.isfile(f)]
     if csv not in files:
         print(f'File {csv} not found. Exiting...')
         exit()
