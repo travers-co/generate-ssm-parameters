@@ -1,2 +1,4 @@
 /distarchive/
 /dist/
+/generate_ssm_parameters.egg-info/
+/src/generate_ssm_parameters.egg-info/
