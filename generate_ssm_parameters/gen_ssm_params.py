@@ -21,7 +21,8 @@ def start_session(reg, pro):
                 s = boto3.Session(
                     aws_access_key_id=ACCESS_KEY,
                     aws_secret_access_key=SECRET_KEY,
-                    aws_session_token=SESSION_TOKEN
+                    aws_session_token=SESSION_TOKEN,
+                    region_name=reg
                 )
                 return s
             except botocore.exceptions.ClientError as error:
@@ -63,10 +64,12 @@ def cli(region, profile, csv):
     # check for csv file
     print(f"Loading {csv}...")
 
-    files = [f for f in os.listdir('..') if os.path.isfile(f)]
+    path = os.getcwd()
+
+    files = [f for f in os.listdir(path) if os.path.isfile(f)]
     print(files)
     if csv not in files:
-        print(f'File {csv} not found. Exiting...')
+        print(f'File {csv} not found in working directory. Exiting...')
         exit()
 
     try:
