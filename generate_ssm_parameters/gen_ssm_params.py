@@ -121,6 +121,9 @@ def cli(region, profile, csv):
             print(f'\t- {x}')
         if confirm('Do you want to overwrite them?'):
             overwrite_flag = True
+        if len(duplicated_params) >= len(name_list) and not overwrite_flag:
+            print("Nothing to do, exiting...")
+            exit()
 
     failed_params = []
     successful_params = []
