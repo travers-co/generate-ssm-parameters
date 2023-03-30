@@ -62,7 +62,9 @@ def cli(region, profile, csv):
 
     # check for csv file
     print(f"Loading {csv}...")
+
     files = [f for f in os.listdir('..') if os.path.isfile(f)]
+    print(files)
     if csv not in files:
         print(f'File {csv} not found. Exiting...')
         exit()
@@ -143,4 +145,4 @@ def cli(region, profile, csv):
             print(f'\t- {failed_params[x]}: {error_codes[x]}')
 
     print('Parameter creation complete.')
-    print(f'{len(successful_params)} parameters were created for profile {profile} in {region}.')
+    print(f'{len(successful_params)} parameters were created.')
