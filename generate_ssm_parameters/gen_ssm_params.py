@@ -12,27 +12,29 @@ def start_session(reg, pro):
     # profile selection input loop, lets you type in your aws credentials profile and starts a session.
     print(f"Starting AWS session in {reg} for profile {pro}...")
     while not started:
-        try:
-            s = boto3.Session(profile_name=pro, region_name=reg)
-            if s:
+        if not os.getenv('AWS_DEFAULT_PROFILE'):
+            try:
+                print("Trying environment variables...")
+                ACCESS_KEY = os.getenv('AWS_ACCESS_KEY_ID')
+                SECRET_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+                SESSION_TOKEN = os.getenv('AWS_SESSION_TOKEN')
+                s = boto3.Session(
+                    aws_access_key_id=ACCESS_KEY,
+                    aws_secret_access_key=SECRET_KEY,
+                    aws_session_token=SESSION_TOKEN
+                )
                 return s
-        except (botocore.exceptions.ClientError, botocore.exceptions.ProfileNotFound) as error:
-            print('Invalid profile: {}'.format(pro))
-            raise error
-        try:
-            print("Trying environment variables...")
-            ACCESS_KEY = os.getenv('AWS_ACCESS_KEY_ID')
-            SECRET_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-            SESSION_TOKEN = os.getenv('AWS_SESSION_TOKEN')
-            s = boto3.Session(
-                aws_access_key_id=ACCESS_KEY,
-                aws_secret_access_key=SECRET_KEY,
-                aws_session_token=SESSION_TOKEN
-            )
-            return s
-        except botocore.exceptions.ClientError as error:
-            print('Invalid profile: {}'.format(pro))
-            raise error
+            except botocore.exceptions.ClientError as error:
+                print('Invalid profile: {}'.format(pro))
+                raise error
+        else:
+            try:
+                s = boto3.Session(profile_name=pro, region_name=reg)
+                if s:
+                    return s
+            except (botocore.exceptions.ClientError, botocore.exceptions) as error:
+                print('Invalid profile: {}'.format(pro))
+                raise error
 
 
 def confirm(message):
