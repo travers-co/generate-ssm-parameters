@@ -6,6 +6,9 @@ import os
 from tqdm import tqdm
 
 
+SAMPLE_FILE_NAME = 'generate-ssm-parameters-sample.csv'
+
+
 # enter a profile to connect a session for scripts run locally
 def start_session(reg, pro):
     started = False
@@ -70,7 +73,14 @@ def cli(region, profile, csv):
 
     files = [f for f in os.listdir(path) if os.path.isfile(f)]
     if csv not in files:
-        print(f'File {csv} not found in working directory. Exiting...')
+        print(f'File {csv} not found in working directory.')
+        if confirm('Would you like to create a sample csv file?'):
+            headers = ['Name', 'Type', 'Value', 'Description']
+            values = ['test', 'SecureString', '{key: value}', 'Test parameter for generate-ssm-parameters.']
+            df = pd.DataFrame(values, columns=headers)
+            df.to_csv(SAMPLE_FILE_NAME)
+            print(f'Created csv file {SAMPLE_FILE_NAME}')
+        print('Exiting...')
         exit()
 
     try:
