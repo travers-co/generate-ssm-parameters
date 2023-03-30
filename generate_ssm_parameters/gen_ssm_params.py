@@ -95,7 +95,11 @@ def cli(region, profile, csv):
 
     ssm_client = session.client('ssm')
     paginator = ssm_client.get_paginator('describe_parameters')
-    response_iterator = paginator.paginate()
+    try:
+        response_iterator = paginator.paginate()
+    except botocore.exceptions.ClientError as e:
+        print(e)
+        exit(1)
 
     existing_params = []
     duplicated_params = []
@@ -143,9 +147,9 @@ def cli(region, profile, csv):
             error_codes.append(e)
 
     if failed_params:
-        print(f'{len(failed_params)} parameters could not be created:')
+        print(f'{len(failed_params)} parameter(s) could not be created:')
         for x in range(len(failed_params)):
             print(f'\t- {failed_params[x]}: {error_codes[x]}')
 
     print('Parameter creation complete.')
-    print(f'{len(successful_params)} parameters were created.')
+    print(f'{len(successful_params)} parameter(s) were created.')
