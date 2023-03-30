@@ -69,7 +69,6 @@ def cli(region, profile, csv):
     path = os.getcwd()
 
     files = [f for f in os.listdir(path) if os.path.isfile(f)]
-    print(files)
     if csv not in files:
         print(f'File {csv} not found in working directory. Exiting...')
         exit()
