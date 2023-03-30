@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="generate_ssm_parameters",
-    version="0.1.15",
+    version="0.1.16",
     description="A script for creating AWS SSM Parameters in bulk from a CSV file.",
     long_description=long_description,
     long_description_content_type="text/markdown",
