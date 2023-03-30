@@ -10,9 +10,10 @@ from tqdm import tqdm
 def start_session(reg, pro):
     started = False
     # profile selection input loop, lets you type in your aws credentials profile and starts a session.
-    print(f"Starting AWS session in {reg} for profile {pro}...")
+    print(f"Starting AWS session in {reg}...")
     while not started:
         if not os.getenv('AWS_DEFAULT_PROFILE'):
+            print('No default profile found...')
             try:
                 print("Trying environment variables...")
                 ACCESS_KEY = os.getenv('AWS_ACCESS_KEY_ID')
@@ -29,6 +30,7 @@ def start_session(reg, pro):
                 print('Invalid profile: {}'.format(pro))
                 raise error
         else:
+            print(f'Trying profile {pro}...')
             try:
                 s = boto3.Session(profile_name=pro, region_name=reg)
                 if s:
